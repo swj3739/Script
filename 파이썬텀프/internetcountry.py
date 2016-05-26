@@ -64,7 +64,7 @@ def sendMain():
     msgtext = str(input ('Do you want to include book data (y/n):'))
     if msgtext == 'y' :
         keyword = str(input ('input keyword to search:'))
-        html = MakeHtmlDoc(SearchBookTitle(keyword))
+        html = MakeHtmlDoc(SearchCountryName(keyword))
     
     import mysmtplib
     # MIMEMultipart의 MIME을 생성합니다.

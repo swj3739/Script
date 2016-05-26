@@ -9,9 +9,9 @@ def printMenu():
     print("Print dom to xml: p")
     print("Quit program:   q")
     print("print Book list: b")
-    print("Add new book: a")
-    print("sEarch Book Title: e")
-    print("Make html: m")
+    #print("Add new book: a")
+    print("SearchCountry Title: e")
+    #print("Make html: m")
     print("----------------------------------------")
     print("Get book data from isbn: g")
     print("send maIl : i")
@@ -26,14 +26,10 @@ def launcherFunction(menu):
     elif menu == 'p':
         PrintDOMtoXML()
     elif menu == 'b':
-        PrintBookList(["title",])
-    elif menu == 'a':
-        ISBN = str(input ('insert ISBN :'))
-        title = str(input ('insert Title :'))
-        AddBook({'ISBN':ISBN, 'title':title})
+        PrintCountryList(["countryName",])
     elif menu == 'e':
         keyword = str(input ('input keyword to search :'))
-        printBookList(SearchBookTitle(keyword))
+        printBookList(SearchCountryName(keyword))
     elif menu == 'g': 
         isbn = str(input ('input isbn to get :'))
         #isbn = '0596513984'
@@ -45,6 +41,8 @@ def launcherFunction(menu):
         print("-----------------------")
         print(html)
         print("-----------------------")
+    elif menu == 's':
+        렬
     elif menu == 'i':
         sendMain()
     elif menu == "t":
