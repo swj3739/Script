@@ -8,9 +8,10 @@ def printMenu():
     print("Load xml:  l")
     print("Print dom to xml: p")
     print("Quit program:   q")
-    print("print Book list: b")
+    print("print Country list: b")
     #print("Add new book: a")
     print("SearchCountry Title: e")
+    print("SortByGround: s")
     #print("Make html: m")
     print("----------------------------------------")
     print("Get book data from isbn: g")
@@ -42,7 +43,9 @@ def launcherFunction(menu):
         print(html)
         print("-----------------------")
     elif menu == 's':
-        렬
+        #countrylist,groundlist = SortToGround()
+        SortToGround()
+        
     elif menu == 'i':
         sendMain()
     elif menu == "t":

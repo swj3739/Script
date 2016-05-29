@@ -33,9 +33,63 @@ def PrintDOMtoXML():
 
 def SortToGround(): #땅크기정
     global CountrysDoc
+    retlist = []
+    namelist = []
+    strinfo = ''
     count = 0
     if not checkDocument():
        return None
+    try:
+        tree = ElementTree.fromstring(str(BooksDoc.toxml()))
+    except Exception:
+        print ("Element Tree parsing Error : maybe the xml document is not corrected.")
+        return None
+    countryElements = tree.getiterator("item")
+    
+    for item in countryElements:
+        strCountryEnglish = item.find("countryEnName")
+        strInfo = item.find("basic")
+        namelist.append(strCountryEnglish.text)
+        retlist.append(strInfo.text)
+
+    strinfo = str(''.join(retlist))
+    sub = "면적 :"
+    buf = ''
+    sizeList = []
+    di = {}
+    #print('len = ',len(retlist))
+    #print(retlist[1]) 
+    for i in range(len(retlist)):
+        if retlist[i].find((sub)): #해당문자가 있으면
+            for j in range(len(retlist[i])):
+                if len(retlist[i])-1 == j:
+                    sizeList.append('')
+                    #print("끝일떄추가")
+                    break
+                if retlist[i][j] == '㎢':
+                    sizeList.append(buf)
+                    buf = ''
+                    #print("km 찾아서 추가")
+                    break
+                if retlist[i][j] == ',':
+                    continue
+                if retlist[i][j] == '면':
+                    if retlist[i][j+1] == '적':
+                        for z in range(30):
+                            if retlist[i][j+5+z] == ' ':
+                                continue
+                            if retlist[i][j+5+z] == ',':
+                                continue
+                            if 48 > ord(retlist[i][j+5+z]) :
+                                break
+                            if ord(retlist[i][j+5+z])>57:
+                                break
+                            buf += retlist[i][j+5+z]
+    #print(len(namelist))
+    #print(len(sizeList))
+    for i in range(len(namelist)):
+        print(namelist[i] ,'=', sizeList[i])
+    return namelist, sizeList
 
 def PrintCountryList(tags):
     global CountrysDoc
@@ -53,7 +107,7 @@ def PrintCountryList(tags):
     for item in countryElements:
         count+=1
         strCountry = item.find("countryName")
-        print("Name = ",strCountry.text)
+        print(" ",strCountry.text)
     print(count)       
 
 def SearchCountryName(keyword):
