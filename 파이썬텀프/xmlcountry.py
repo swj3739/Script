@@ -47,7 +47,7 @@ def SortToGround(): #땅크기정
     countryElements = tree.getiterator("item")
     
     for item in countryElements:
-        strCountryEnglish = item.find("countryEnName")
+        strCountryEnglish = item.find("countryName")
         strInfo = item.find("basic")
         namelist.append(strCountryEnglish.text)
         retlist.append(strInfo.text)
@@ -111,6 +111,7 @@ def SortToGround(): #땅크기정
 
 def PrintCountryList(tags):
     global CountrysDoc
+    retlist = []
     count = 0
     if not checkDocument():
        return None
@@ -126,7 +127,8 @@ def PrintCountryList(tags):
         count+=1
         strCountry = item.find("countryName")
         print("Name = ",strCountry.text)
-    print(count)       
+        retlist.append(strCountry.text)
+    return retlist       
 
 def SearchCountryName(keyword):
     global CountrysDoc
@@ -157,7 +159,8 @@ def SearchCountryName(keyword):
             retlist.append(strInfo.text)
             retlist.append(strImageURL.text)
             return retlist
-        
+        #else:
+        #    retlist.append("")
     #for item in countryElements:
     #    strCountry = item.find("countryName")
     #    if (strCountry.text.find(keyword) >=0 ):
@@ -180,7 +183,7 @@ def ContinentNameList(keyword):
     countryElements = tree.getiterator("item")  # return list type
     for item in countryElements:
         strContinent = item.find("continent")
-        strCountryName = item.find("countryEnName")
+        strCountryName = item.find("countryName")
         if (keyword == '1' and strContinent.text == '중동/아프리카'):
             namelist.append(strCountryName.text)
         if (keyword == '2' and strContinent.text == '아시아/태평양'):

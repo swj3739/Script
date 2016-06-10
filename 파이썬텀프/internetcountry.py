@@ -1,4 +1,5 @@
 from xmlcountry import *
+from launcher import *
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -56,14 +57,14 @@ def extractBookData(strXml):
 def sendMain():
     global host, port
     html = ""
-    title = str(input ('Title :'))
-    senderAddr = str(input ('sender email address :'))
-    recipientAddr = str(input ('recipient email address :'))
-    msgtext = str(input ('write message :'))
-    passwd = str(input (' input your password of gmail account :'))
-    msgtext = str(input ('Do you want to include book data (y/n):'))
+    title = 'countryName'
+    senderAddr = 'swj1718@gmail.com'
+    recipientAddr = slot6_click.ID
+    msgtext = 'countryName'
+    passwd = 'tlsdnwls3739'
+    msgtext = 'y'
     if msgtext == 'y' :
-        keyword = str(input ('input keyword to search:'))
+        keyword = slot6_click.list
         html = MakeHtmlDoc(SearchCountryName(keyword))
     
     import mysmtplib
